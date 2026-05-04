@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA & Biais</title>
+    <style>
+        :root {
+            --bleu: #2563EB;
+            --bleu-clair: #DBEAFE;
+            --vert: #16A34A;
+            --orange: #EA580C;
+            --violet: #7C3AED;
+            --fond: #F8FAFC;
+            --texte: #1E293B;
+            --gris: #64748B;
+            --bordure: #E2E8F0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--fond);
+            color: var(--texte);
+            line-height: 1.6;
+            font-size: 15px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: white;
+            border-bottom: 2px solid var(--bordure);
+            padding: 0 40px;
+            height: 65px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+
+        .nav-logo {
+            font-weight: 800;
+            font-size: 22px;
+            color: var(--bleu);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gris);
+            font-weight: 600;
+        }
+
+        .nav-links a:hover { color: var(--bleu); }
+
+        main {
+            max-width: 1100px;
+            margin: 90px auto 80px;
+            padding: 0 20px;
+        }
+
+        section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+            overflow: hidden;
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            padding: 35px 40px;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .section-header .icon-big { font-size: 52px; }
+        .section-header h2 { font-size: 26px; font-weight: 800; }
+
+        .header-3c { background: linear-gradient(135deg, #7C3AED, #5B21B6); }
+        .header-s1 { background: linear-gradient(135deg, #2563EB, #1D4ED8); }
+        .header-s2 { background: linear-gradient(135deg, #EA580C, #C2410C); }
+        .header-s3 { background: linear-gradient(135deg, #16A34A, #15803D); }
+        .header-qcm { background: linear-gradient(135deg, #0F172A, #1E293B); }
+
+        .section-body { padding: 40px; }
+
+        .sub-title {
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gris);
+            margin: 30px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--bordure);
+        }
+
+        .trois-c-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .c-card {
+            border-radius: 16px;
+            padding: 24px 20px;
+            text-align: center;
+        }
+
+        .c-card.clair         { background: var(--bleu-clair); border-top: 6px solid var(--bleu); }
+        .c-card.contextualise { background: #DCFCE7; border-top: 6px solid var(--vert); }
+        .c-card.correct       { background: #EDE9FE; border-top: 6px solid var(--violet); }
+
+        /* QCM */
+        .login-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 25px 0;
+        }
+
+        .form-group label {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--gris);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--bordure);
+            border-radius: 10px;
+            font-size: 15px;
+        }
+
+        .btn-login {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #0F172A, #1E293B);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .question-block {
+            background: #F8FAFC;
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 2px solid var(--bordure);
+        }
+
+        .results-header {
+            text-align: center;
+            padding: 40px 20px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+        }
+
+        .results-score {
+            font-size: 72px;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gris);
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <div class="nav-logo">🤖 IA & Biais</div>
+    <ul class="nav-links">
+        <li><a href="#methode-3c">Méthode 3C</a></li>
+        <li><a href="#seance1">Séance 1</a></li>
+        <li><a href="#seance2">Séance 2</a></li>
+        <li><a href="#seance3">Séance 3</a></li>
+        <li><a href="#qcm">QCM Final</a></li>
+    </ul>
+</nav>
+
+<main>
+
+    <!-- Méthode 3C -->
+    <section id="methode-3c">
+        <div class="section-header header-3c">
+            <div class="icon-big">💡</div>
+            <div><h2>La Méthode des 3C</h2><p>Pour écrire de bons prompts</p></div>
+        </div>
+        <div class="section-body">
+            <div class="trois-c-grid">
+                <div class="c-card clair"><h3>CLAIR</h3><p>Précis, concis et sans fautes</p></div>
+                <div class="c-card contextualise"><h3>CONTEXTUALISÉ</h3><p>Donne un rôle et un format</p></div>
+                <div class="c-card correct"><h3>CORRECT / NEUTRE</h3><p>Langage objectif et neutre</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Séance 1 -->
+    <section id="seance1">
+        <div class="section-header header-s1">
+            <div class="icon-big">🕒</div>
+            <div><h2>Séance 1 — Découverte de l’IA</h2></div>
+        </div>
+        <div class="section-body">
+            <p><strong>Objectif :</strong> Comprendre ce qu’est une IA générative et apprendre à interagir avec elle.</p>
+            <div class="sub-title">Déroulement</div>
+            <ul>
+                <li>Introduction : C’est quoi une IA ?</li>
+                <li>Prise en main de ChatGPT / Gemini / Copilot</li>
+                <li>Application de la méthode des 3C</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Séance 2 -->
+    <section id="seance2">
+        <div class="section-header header-s2">
+            <div class="icon-big">🔍</div>
+            <div><h2>Séance 2 — À la chasse aux biais !</h2></div>
+        </div>
+        <div class="section-body">
+            <p><strong>Objectif :</strong> Identifier les stéréotypes et biais dans les réponses des IA.</p>
+            <div class="sub-title">Activités</div>
+            <ul>
+                <li>Test du scientifique</li>
+                <li>Chasse aux biais sur différents métiers</li>
+                <li>Échange collectif</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Séance 3 -->
+    <section id="seance3">
+        <div class="section-header header-s3">
+            <div class="icon-big">✅</div>
+            <div><h2>Séance 3 — Devenir un Prompt-Checker</h2></div>
+        </div>
+        <div class="section-body">
+            <p><strong>Objectif :</strong> Créer un contenu de qualité avec l’IA et l’évaluer.</p>
+            <div class="sub-title">Activités</div>
+            <ul>
+                <li>Amélioration de prompts</li>
+                <li>Évaluation par les pairs</li>
+                <li>QCM final</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- QCM -->
+    <section id="qcm">
+        <div class="section-header header-qcm">
+            <div class="icon-big">🎮</div>
+            <div><h2>QCM Final — IA & Biais</h2><p>10 questions • Un seul essai autorisé</p></div>
+        </div>
+        <div class="section-body">
+
+            <!-- LOGIN -->
+            <div id="qcm-login">
+                <h3>🔐 Identifie-toi</h3>
+                <p>Sélectionne tes informations et entre ton code secret personnel.</p>
+                
+                <div class="login-form-grid">
+                    <div class="form-group">
+                        <label>Prénom</label>
+                        <select id="select-prenom"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <select id="select-nom"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Classe</label>
+                        <select id="select-classe"></select>
+                    </div>
+                    <div class="form-group">
+                        <label>Code secret</label>
+                        <input type="password" id="input-code" placeholder="Ton code secret" autocomplete="off">
+                    </div>
+                </div>
+
+                <button class="btn-login" onclick="verifierConnexion()">Commencer le QCM</button>
+                <div id="login-error" style="display:none; color:#DC2626; margin-top:15px; font-weight:600;">
+                    ❌ Identifiants ou code secret incorrect.
+                </div>
+            </div>
+
+            <!-- QCM PRINCIPAL -->
+            <div id="qcm-main" style="display:none;">
+                <div style="background:#0F172A; color:white; padding:20px; border-radius:12px; margin-bottom:25px; display:flex; justify-content:space-between; align-items:center;">
+                    <div><strong id="display-eleve"></strong><br><span id="display-classe"></span></div>
+                    <div>Question <span id="progress-label">0/10</span></div>
+                </div>
+
+                <div id="questions-container"></div>
+
+                <button class="btn-login" id="btn-submit" onclick="soumettreQCM()" style="background:#16A34A;" disabled>
+                    Valider mon QCM
+                </button>
+            </div>
+
+            <!-- RÉSULTATS -->
+            <div id="qcm-results" style="display:none;"></div>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <p>Projet IA & Biais — Niveau 3ème • EMI / Numérique</p>
+</footer>
+
+<script>
+// ==================== CONFIGURATION ====================
+const CONFIG = {
+    GOOGLE_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbwVOTkZ.../exec", // ← À REMPLACER par ton Apps Script URL
+    SHEET_ANNUAIRE_CSV: "https://docs.google.com/spreadsheets/d/12WUptiE4s0Xev6BHTKAjgqUIRhIZRv3NJ0Fe_HK7K8w/export?format=csv&sheet=Annuaire"
+};
+
+// ==================== QUESTIONS ====================
+const QUESTIONS = [
+    { id: 1, texte: "Qu'est-ce que le « Machine Learning » ?", options: ["Quand une machine devient consciente.", "Quand on programme une machine avec des règles très strictes.", "Quand une machine apprend à partir de nombreux exemples."], correct: 2 },
+    { id: 2, texte: "Laquelle de ces applications n'est PAS un bon exemple d'IA dans notre quotidien ?", options: ["Le correcteur orthographique de base.", "La recommandation de vidéos sur YouTube.", "Le GPS Waze qui recalcule l'itinéraire."], correct: 0 },
+    { id: 3, texte: "ChatGPT et Midjourney sont des exemples de :", options: ["IA Forte", "IA Générative", "IA qui n'existe pas encore"], correct: 1 },
+    { id: 4, texte: "Un bon prompt doit être :", options: ["Le plus court possible.", "Vague pour laisser l'IA être créative.", "Précis, contextuel et donner un objectif clair."], correct: 2 },
+    { id: 5, texte: "Qu'est-ce qu'une « hallucination » de l'IA ?", options: ["Quand l'IA crée une image effrayante.", "Quand l'IA invente une information qui semble vraie mais est fausse.", "Quand l'IA refuse de répondre à une question."], correct: 1 },
+    { id: 6, texte: "Copier-coller une réponse de ChatGPT pour un devoir est considéré comme :", options: ["Une utilisation intelligente de l'IA.", "Du plagiat.", "Une bonne méthode pour gagner du temps."], correct: 1 },
+    { id: 7, texte: "Un « biais » dans une IA, c'est quand :", options: ["L'IA se trompe dans un calcul.", "L'IA reproduit des stéréotypes présents dans ses données d'entraînement.", "L'IA met trop de temps à répondre."], correct: 1 },
+    { id: 8, texte: "Quelle est la meilleure attitude face à une réponse d'une IA ?", options: ["La croire sur parole.", "La vérifier en croisant avec d'autres sources fiables.", "La rejeter systématiquement."], correct: 1 },
+    { id: 9, texte: "L'IA « Forte » (comme dans les films) est aujourd'hui :", options: ["Très courante et accessible à tous.", "En cours de développement et sera disponible l'an prochain.", "Un concept de science-fiction qui n'existe pas encore."], correct: 2 },
+    { id: 10, texte: "Le rôle de l'IA à l'école est d'être :", options: ["Un remplaçant pour faire les devoirs difficiles.", "Un assistant pour aider à comprendre et gagner du temps.", "Un outil de divertissement uniquement."], correct: 1 }
+];
+
+let ELEVES = [];
+let eleveConnecte = null;
+
+// ==================== CHARGEMENT ANNuaire ====================
+async function chargerEleves() {
+    try {
+        const resp = await fetch(CONFIG.SHEET_ANNUAIRE_CSV);
+        const text = await resp.text();
+        const lignes = text.trim().split("\n").slice(1);
+
+        lignes.forEach(ligne => {
+            const cols = ligne.split(",");
+            if (cols.length >= 4) {
+                ELEVES.push({
+                    nom: cols[0].trim().replace(/"/g, ""),
+                    prenom: cols[1].trim().replace(/"/g, ""),
+                    classe: cols[2].trim().replace(/"/g, ""),
+                    code_secret: cols[3].trim().replace(/"/g, "")
+                });
+            }
+        });
+
+        remplirSelect("select-prenom", [...new Set(ELEVES.map(e => e.prenom))].sort());
+        remplirSelect("select-nom",    [...new Set(ELEVES.map(e => e.nom))].sort());
+        remplirSelect("select-classe", [...new Set(ELEVES.map(e => e.classe))].sort());
+
+    } catch(e) {
+        console.error("Erreur lors du chargement de l'annuaire", e);
+    }
+}
+
+function remplirSelect(id, valeurs) {
+    const sel = document.getElementById(id);
+    sel.innerHTML = `<option value="">— Sélectionne —</option>`;
+    valeurs.forEach(v => {
+        const opt = document.createElement("option");
+        opt.value = v;
+        opt.textContent = v;
+        sel.appendChild(opt);
+    });
+}
+
+// ==================== VÉRIFICATION CONNEXION ====================
+function verifierConnexion() {
+    const prenom = document.getElementById("select-prenom").value;
+    const nom = document.getElementById("select-nom").value;
+    const classe = document.getElementById("select-classe").value;
+    const code = document.getElementById("input-code").value.trim();
+
+    const errorDiv = document.getElementById("login-error");
+
+    if (!prenom || !nom || !classe || !code) {
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    const eleve = ELEVES.find(e => 
+        e.prenom.toLowerCase() === prenom.toLowerCase() &&
+        e.nom.toLowerCase() === nom.toLowerCase() &&
+        e.classe.toLowerCase() === classe.toLowerCase() &&
+        e.code_secret === code
+    );
+
+    if (!eleve) {
+        errorDiv.style.display = "block";
+        return;
+    }
+
+    errorDiv.style.display = "none";
+    eleveConnecte = { prenom: eleve.prenom, nom: eleve.nom, classe: eleve.classe };
+    lancerQCM();
+}
+
+// ==================== LANCEMENT QCM ====================
+function lancerQCM() {
+    document.getElementById("qcm-login").style.display = "none";
+    document.getElementById("qcm-main").style.display = "block";
+
+    document.getElementById("display-eleve").textContent = `${eleveConnecte.prenom} ${eleveConnecte.nom}`;
+    document.getElementById("display-classe").textContent = eleveConnecte.classe;
+
+    const container = document.getElementById("questions-container");
+    container.innerHTML = "";
+
+    QUESTIONS.forEach((q, idx) => {
+        const letters = ["a", "b", "c"];
+        const bloc = document.createElement("div");
+        bloc.className = "question-block";
+        bloc.innerHTML = `
+            <div style="font-weight:700; margin-bottom:12px;">Question ${q.id}</div>
+            <div style="font-weight:600; margin-bottom:16px;">${q.texte}</div>
+            <ul style="list-style:none;">
+                ${q.options.map((opt, i) => `
+                    <li style="margin:8px 0;">
+                        <label style="cursor:pointer; display:flex; align-items:center; gap:10px;">
+                            <input type="radio" name="q${q.id}" value="${i}" onchange="mettreAJourProgression()">
+                            <span>${letters[i]}) ${opt}</span>
+                        </label>
+                    </li>
+                `).join("")}
+            </ul>
+        `;
+        container.appendChild(bloc);
+    });
+
+    mettreAJourProgression();
+}
+
+function mettreAJourProgression() {
+    let repondues = 0;
+    QUESTIONS.forEach(q => {
+        if (document.querySelector(`input[name="q${q.id}"]:checked`)) repondues++;
+    });
+    document.getElementById("progress-label").textContent = `${repondues}/10`;
+    document.getElementById("btn-submit").disabled = repondues < 10;
+}
+
+// ==================== SOUMISSION ====================
+async function soumettreQCM() {
+    let score = 0;
+    const reponses = [];
+
+    QUESTIONS.forEach(q => {
+        const selected = document.querySelector(`input[name="q${q.id}"]:checked`);
+        const repIndex = selected ? parseInt(selected.value) : -1;
+        const correct = repIndex === q.correct;
+        if (correct) score++;
+        reponses.push({ question: q.id, correct });
+    });
+
+    const pourcentage = Math.round((score / 10) * 100);
+
+    // Envoi vers Google Sheets
+    const payload = {
+        prenom: eleveConnecte.prenom,
+        nom: eleveConnecte.nom,
+        classe: eleveConnecte.classe,
+        date: new Date().toLocaleString("fr-FR"),
+        note: score,
+        total: 10,
+        pourcentage: pourcentage,
+        details: reponses.map(r => r.correct ? "✓" : "✗").join("")
+    };
+
+    try {
+        await fetch(CONFIG.GOOGLE_SCRIPT_URL, {
+            method: "POST",
+            mode: "no-cors",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+        });
+    } catch(e) {
+        console.warn("Envoi échoué", e);
+    }
+
+    afficherResultats(score, pourcentage);
+}
+
+// ==================== AFFICHAGE RÉSULTATS ====================
+function afficherResultats(score, pourcentage) {
+    document.getElementById("qcm-main").style.display = "none";
+    
+    let mention = pourcentage >= 80 ? "Excellent !" : 
+                 pourcentage >= 60 ? "Bien !" : 
+                 pourcentage >= 40 ? "Peut mieux faire" : "À retravailler";
+
+    const html = `
+        <div class="results-header" style="background: linear-gradient(135deg, #DCFCE7, #BBF7D0);">
+            <div style="font-size:60px;">🏆</div>
+            <div class="results-score" style="color:#15803D;">${score} / 10</div>
+            <h2>${mention}</h2>
+            <p>${pourcentage}% de bonnes réponses</p>
+            <p><strong>${eleveConnecte.prenom} ${eleveConnecte.nom}</strong> — ${eleveConnecte.classe}</p>
+        </div>
+        <div style="text-align:center; font-size:18px; margin-top:30px;">
+            Tes résultats ont été enregistrés.<br>
+            Tu peux fermer cette fenêtre.
+        </div>
+    `;
+
+    document.getElementById("qcm-results").innerHTML = html;
+    document.getElementById("qcm-results").style.display = "block";
+}
+
+// ==================== INITIALISATION ====================
+chargerEleves();
+</script>
+
+</body>
+</html>
