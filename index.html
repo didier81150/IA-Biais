@@ -1,1 +1,774 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA & Biais — Niveau 3ème</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
 
+    <!-- NAVIGATION BAR -->
+    <nav class="sticky top-0 left-0 right-0 bg-white/90 backdrop-blur-md border-b border-slate-200 h-16 flex items-center justify-between px-6 md:px-12 z-50 shadow-sm transition-all">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl">🤖</span>
+            <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">IA & Biais</span>
+        </div>
+        <ul class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600">
+            <li><a href="#methode-3c" class="hover:text-blue-600 transition-colors">Méthode 3C</a></li>
+            <li><a href="#seances" class="hover:text-blue-600 transition-colors">Séances 1-3</a></li>
+            <li><a href="#qcm" class="bg-blue-600 text-white px-4 py-2 rounded-full hover:bg-blue-700 transition-all shadow-sm shadow-blue-200">QCM Final</a></li>
+        </ul>
+        <div class="md:hidden">
+            <a href="#qcm" class="bg-blue-600 text-white text-xs font-bold px-3 py-2 rounded-full shadow-sm">QCM Final</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="bg-gradient-to-b from-blue-50 via-white to-slate-50 pt-24 pb-12 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-full">Projet EMI & Numérique • Niveau 3ème</span>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight mt-4 mb-6 text-slate-900 leading-tight">
+                Décrypter l'Intelligence Artificielle et <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">traquer ses biais</span>
+            </h1>
+            <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+                Apprenez à rédiger des prompts parfaits, comprenez le fonctionnement des IA génératives et apprenez à identifier les stéréotypes véhiculés dans leurs réponses.
+            </p>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-5xl mx-auto px-6 pb-24 w-full flex-grow space-y-16">
+
+        <!-- Méthode 3C -->
+        <section id="methode-3c" class="bg-white border border-slate-200/80 rounded-3xl overflow-hidden shadow-sm transition-all hover:shadow-md">
+            <div class="bg-gradient-to-r from-violet-600 to-indigo-600 p-8 text-white flex items-center gap-5">
+                <div class="text-4xl">💡</div>
+                <div>
+                    <h2 class="text-2xl font-extrabold tracking-tight">La Méthode des 3C</h2>
+                    <p class="text-violet-100 text-sm mt-0.5">La clé d'or pour écrire des prompts efficaces et neutres</p>
+                </div>
+            </div>
+            <div class="p-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-blue-50/50 border-t-4 border-blue-500 rounded-2xl p-6 transition-all hover:scale-[1.02]">
+                        <span class="text-3xl block mb-3">🎯</span>
+                        <h3 class="font-extrabold text-lg text-blue-900 mb-2">CLAIR</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Formuler une demande précise, concise, sans fautes d'orthographe et avec des mots simples.</p>
+                    </div>
+                    <div class="bg-emerald-50/50 border-t-4 border-emerald-500 rounded-2xl p-6 transition-all hover:scale-[1.02]">
+                        <span class="text-3xl block mb-3">🏷️</span>
+                        <h3 class="font-extrabold text-lg text-emerald-900 mb-2">CONTEXTUALISÉ</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Donner un rôle à l'IA (ex: "Agis en historien"), lui décrire la situation et spécifier le format attendu.</p>
+                    </div>
+                    <div class="bg-purple-50/50 border-t-4 border-purple-500 rounded-2xl p-6 transition-all hover:scale-[1.02]">
+                        <span class="text-3xl block mb-3">⚖️</span>
+                        <h3 class="font-extrabold text-lg text-purple-900 mb-2">CORRECT / NEUTRE</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed">Utiliser un langage objectif, sans termes subjectifs ou orientés, pour éviter d'influencer ou de biaiser l'IA.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Séances Timeline -->
+        <section id="seances" class="space-y-8">
+            <div class="flex items-center gap-3">
+                <span class="text-3xl">🗓️</span>
+                <h2 class="text-2xl font-extrabold text-slate-900">Le Programme des Séances</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4 text-white flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-white/20 px-2 py-1 rounded">Séance 1</span>
+                            <span class="text-xl">🕒</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-900 mb-3">Découverte de l'IA</h3>
+                            <p class="text-sm text-slate-500 mb-4"><strong>Objectif :</strong> Comprendre ce qu'est une IA générative et apprendre à interagir avec elle.</p>
+                            <div class="space-y-2 border-t border-slate-100 pt-4">
+                                <div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Au programme :</div>
+                                <ul class="text-sm text-slate-600 space-y-2">
+                                    <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">•</span><span>Introduction : C'est quoi une IA ?</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">•</span><span>Prise en main de ChatGPT / Gemini / Copilot</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-blue-500 mt-0.5">•</span><span>Première mise en pratique des 3C</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="bg-gradient-to-r from-orange-500 to-red-500 px-6 py-4 text-white flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-white/20 px-2 py-1 rounded">Séance 2</span>
+                            <span class="text-xl">🔍</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-900 mb-3">Chasse aux Biais</h3>
+                            <p class="text-sm text-slate-500 mb-4"><strong>Objectif :</strong> Identifier les stéréotypes et biais présents dans les réponses générées.</p>
+                            <div class="space-y-2 border-t border-slate-100 pt-4">
+                                <div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Au programme :</div>
+                                <ul class="text-sm text-slate-600 space-y-2">
+                                    <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">•</span><span>Le test du scientifique (stéréotypes)</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">•</span><span>Chasse aux biais sur différents métiers</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-orange-500 mt-0.5">•</span><span>Débat et échange collectif sur la neutralité</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white border border-slate-200/80 rounded-2xl overflow-hidden shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="bg-gradient-to-r from-emerald-600 to-teal-600 px-6 py-4 text-white flex items-center justify-between">
+                            <span class="text-xs font-bold uppercase tracking-wider bg-white/20 px-2 py-1 rounded">Séance 3</span>
+                            <span class="text-xl">✅</span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-lg text-slate-900 mb-3">Prompt-Checker</h3>
+                            <p class="text-sm text-slate-500 mb-4"><strong>Objectif :</strong> Créer un contenu de qualité avec l'IA et savoir l'évaluer d'un œil critique.</p>
+                            <div class="space-y-2 border-t border-slate-100 pt-4">
+                                <div class="text-xs font-bold text-slate-400 uppercase tracking-wide">Au programme :</div>
+                                <ul class="text-sm text-slate-600 space-y-2">
+                                    <li class="flex items-start gap-2"><span class="text-emerald-500 mt-0.5">•</span><span>Atelier d'amélioration de prompts</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-emerald-500 mt-0.5">•</span><span>Évaluation critique par les pairs</span></li>
+                                    <li class="flex items-start gap-2"><span class="text-emerald-500 mt-0.5">•</span><span>Validation finale avec le QCM</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- QCM SECTION -->
+        <section id="qcm" class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-lg scroll-mt-20">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 p-8 text-white flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="flex items-center gap-5">
+                    <div class="text-4xl md:text-5xl">🎮</div>
+                    <div>
+                        <h2 class="text-2xl font-black tracking-tight">QCM Final — Évaluation</h2>
+                        <p class="text-slate-300 text-sm mt-0.5">10 questions • Réfléchis bien avant de valider • Un seul essai autorisé</p>
+                    </div>
+                </div>
+                <div class="bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-700 text-xs font-bold text-slate-300 self-start md:self-auto">
+                    Note enregistrée sur Google Sheets 📊
+                </div>
+            </div>
+
+            <div class="p-8 md:p-12">
+                <!-- LOGIN SCREEN -->
+                <div id="qcm-login" class="space-y-6">
+                    <div class="bg-blue-50 border border-blue-100 text-blue-900 p-5 rounded-2xl flex gap-3 items-start">
+                        <span class="text-xl">🔐</span>
+                        <div class="text-sm leading-relaxed">
+                            <strong class="font-bold">Identifie-toi :</strong> Sélectionne ton prénom, ton nom et ta classe dans les listes ci-dessous, puis saisis ton code secret à 10 caractères (ex: <code>BODI001XCG</code>) présent sur ta fiche élève.
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold uppercase tracking-wide text-slate-500">Prénom</label>
+                            <div class="relative" id="prenom-container">
+                                <select id="select-prenom" class="w-full bg-white border-2 border-slate-200 rounded-xl px-4 py-3 text-slate-700 font-semibold focus:border-blue-500 focus:outline-none appearance-none cursor-pointer transition-all">
+                                    <option value="">Chargement de la liste...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold uppercase tracking-wide text-slate-500">Nom</label>
+                            <div class="relative" id="nom-container">
+                                <select id="select-nom" class="w-full bg-white border-2 border-slate-200 rounded-xl px-4 py-3 text-slate-700 font-semibold focus:border-blue-500 focus:outline-none appearance-none cursor-pointer transition-all">
+                                    <option value="">Chargement de la liste...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold uppercase tracking-wide text-slate-500">Classe</label>
+                            <div class="relative" id="classe-container">
+                                <select id="select-classe" class="w-full bg-white border-2 border-slate-200 rounded-xl px-4 py-3 text-slate-700 font-semibold focus:border-blue-500 focus:outline-none appearance-none cursor-pointer transition-all">
+                                    <option value="">Chargement de la liste...</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs font-bold uppercase tracking-wide text-slate-500">Code secret personnel</label>
+                            <input type="password" id="input-code" placeholder="Saisis ton code secret élève" autocomplete="off" class="w-full bg-white border-2 border-slate-200 rounded-xl px-4 py-3 text-slate-700 font-semibold focus:border-blue-500 focus:outline-none transition-all placeholder:text-slate-400">
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 px-6 rounded-2xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 cursor-pointer mt-6 flex items-center justify-center gap-2" onclick="verifierConnexion()">
+                        Commencer le QCM <span class="text-lg">🚀</span>
+                    </button>
+
+                    <div id="login-error" class="hidden bg-red-50 border border-red-200 text-red-700 p-4 rounded-xl text-sm font-semibold transition-all">
+                        ❌ Une erreur est survenue lors de l'identification.
+                    </div>
+                </div>
+
+                <!-- QUIZ SYSTEM -->
+                <div id="qcm-main" class="hidden space-y-8">
+                    <div class="bg-slate-900 text-white p-6 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-md">
+                        <div>
+                            <div class="font-extrabold text-lg text-blue-400" id="display-eleve">Élève</div>
+                            <div class="text-xs text-slate-400 font-semibold" id="display-classe">Classe</div>
+                        </div>
+                        <div class="flex items-center gap-4 w-full md:w-auto">
+                            <div class="w-full md:w-36 bg-slate-800 h-2.5 rounded-full overflow-hidden">
+                                <div id="progress-bar" class="bg-gradient-to-r from-blue-500 to-indigo-500 h-full w-0 transition-all duration-300"></div>
+                            </div>
+                            <span class="text-sm font-bold text-slate-300 shrink-0" id="progress-label">0/10 questions</span>
+                        </div>
+                    </div>
+
+                    <div id="questions-container" class="space-y-6"></div>
+
+                    <div class="pt-6 border-t border-slate-100 flex flex-col items-center gap-4">
+                        <p id="submit-warning" class="text-sm text-slate-500 text-center font-medium">
+                            Réponds à toutes les questions avant de pouvoir valider tes réponses.
+                        </p>
+                        <button class="w-full md:w-2/3 bg-emerald-600 disabled:bg-slate-200 disabled:text-slate-400 text-white font-black py-4 px-8 rounded-2xl shadow-md transition-all enabled:hover:bg-emerald-700 disabled:cursor-not-allowed flex items-center justify-center gap-2 cursor-pointer" id="btn-submit" onclick="soumettreQCM()" disabled>
+                            Valider et enregistrer ma note <span class="text-lg">💾</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- RESULTS PANEL -->
+                <div id="qcm-results" class="hidden space-y-8"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER & TEACHER PANEL -->
+    <footer class="bg-slate-900 text-slate-400 mt-auto border-t border-slate-800">
+        <div class="max-w-5xl mx-auto px-6 py-12 text-center space-y-6">
+            <p class="text-sm font-semibold tracking-wide">Projet IA & Biais — Niveau 3ème • EMI / Numérique</p>
+            <div class="flex justify-center gap-4">
+                <button onclick="toggleTeacherPanel()" class="text-xs font-bold text-slate-500 hover:text-slate-300 bg-slate-800/80 hover:bg-slate-800 border border-slate-700 rounded-lg px-4 py-2 cursor-pointer transition-all">
+                    ⚙️ Espace Enseignant & Configuration
+                </button>
+            </div>
+
+            <div id="teacher-panel" class="hidden text-left bg-slate-800/50 border border-slate-700/80 rounded-2xl p-6 md:p-8 space-y-6 transition-all max-w-4xl mx-auto">
+                <div class="flex items-center justify-between border-b border-slate-700/50 pb-4">
+                    <h3 class="text-lg font-black text-white flex items-center gap-2">🛠️ Panneau d'Administration de l'Enseignant</h3>
+                    <span class="text-xs bg-indigo-500/20 text-indigo-300 px-2.5 py-1 rounded-full font-bold">Configuration</span>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm">
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-slate-200">1. Vos Liens de Base de données</h4>
+                        <div class="space-y-2 text-xs">
+                            <p class="text-slate-400"><strong>Annuaire :</strong><br>
+                            <span class="bg-slate-900/60 p-2 rounded block mt-1 select-all break-all border border-slate-800 text-slate-300">12WUptiE4s0Xev6BHTKAjgqUIRhIZRv3NJ0Fe_HK7K8w</span></p>
+                            <p class="text-slate-400"><strong>Résultats :</strong><br>
+                            <span class="bg-slate-900/60 p-2 rounded block mt-1 select-all break-all border border-slate-800 text-slate-300">1TANL3h6Irb2hajRwP79t0vsPwv33yvhB47BAKGq7It8</span></p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-3">
+                        <h4 class="font-bold text-slate-200">2. URL Google Apps Script</h4>
+                        <div class="space-y-2">
+                            <label class="block text-[11px] font-bold uppercase text-slate-400">URL d'application Web Apps Script</label>
+                            <input type="text" id="teacher-script-url" placeholder="https://script.google.com/macros/s/.../exec" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500">
+                            <button onclick="saveScriptUrl(document.getElementById('teacher-script-url').value)" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-bold py-2 px-3 rounded-lg cursor-pointer transition-all">
+                                💾 Enregistrer l'URL
+                            </button>
+                            <button onclick="testerLiaisonScript()" class="w-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold py-2 px-3 rounded-lg cursor-pointer transition-all mt-1">
+                                ⚡ Tester la liaison avec un faux élève
+                            </button>
+                            <div id="test-script-result" class="hidden text-xs p-2.5 rounded-lg font-semibold mt-2"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="font-bold text-slate-200">3. Procédure étape par étape :</h4>
+                    <ol class="list-decimal list-inside text-xs text-slate-400 space-y-2 bg-slate-900/40 p-4 rounded-xl border border-slate-800">
+                        <li>Ouvrez la feuille Google Sheet Résultats (ID ci-dessus).</li>
+                        <li>Menu <strong>Extensions</strong> &gt; <strong>Apps Script</strong>.</li>
+                        <li>Collez le code ci-dessous (remplacez tout le contenu).</li>
+                        <li><strong>Déployer</strong> &gt; <strong>Nouveau déploiement</strong> &gt; type : <strong>Application Web</strong>.</li>
+                        <li>Exécuter en tant que : <span class="text-emerald-400">Moi</span> — Accès : <span class="text-emerald-400">Tout le monde</span>.</li>
+                        <li>Cliquez <strong>Déployer</strong>, autorisez l'accès.</li>
+                        <li>Copiez l'URL <code>/exec</code> et collez-la dans le champ ci-dessus, puis cliquez <strong>Enregistrer l'URL</strong>.</li>
+                        <li>Cliquez <strong>Tester</strong> et vérifiez qu'une ligne apparaît dans le Sheet.</li>
+                    </ol>
+                </div>
+
+                <div class="space-y-2">
+                    <h4 class="font-bold text-slate-200 flex justify-between items-center text-xs">
+                        <span>📋 Code Google Apps Script — Version corrigée CORS</span>
+                        <button onclick="copierCodeAppsScript()" class="bg-blue-600 hover:bg-blue-700 text-white text-[10px] px-2 py-1 rounded cursor-pointer">Copier</button>
+                    </h4>
+                    <pre id="code-apps-script" class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-[11px] text-slate-300 font-mono overflow-x-auto max-h-64 select-all">
+// ============================================================
+// COLLER CE CODE COMPLET DANS GOOGLE APPS SCRIPT
+// Déployer comme Application Web :
+//   - Exécuter en tant que : Moi
+//   - Qui a accès       : Tout le monde
+// ============================================================
+
+function doPost(e) {
+  // --- Autorisation CORS : indispensable pour les requêtes depuis le navigateur ---
+  var output = ContentService.createTextOutput();
+  output.setMimeType(ContentService.MimeType.JSON);
+
+  try {
+    var ss = SpreadsheetApp.openById("1TANL3h6Irb2hajRwP79t0vsPwv33yvhB47BAKGq7It8");
+    var sheet = ss.getSheetByName("Résultats")
+              || ss.getSheetByName("Resultats")
+              || ss.getSheetByName("Feuille 1")
+              || ss.getSheetByName("Sheet1")
+              || ss.getSheets()[0];
+
+    // Créer les en-têtes si la feuille est vide
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(["Date", "Prénom", "Nom", "Classe", "Note /10", "Pourcentage", "Détail réponses"]);
+      sheet.getRange(1, 1, 1, 7).setFontWeight("bold").setBackground("#4a90d9").setFontColor("#ffffff");
+    }
+
+    // Lire le corps de la requête (envoyé en text/plain pour éviter le preflight CORS)
+    var raw = e.postData ? e.postData.contents : "";
+    var data = JSON.parse(raw);
+
+    // Ajouter la ligne de résultat
+    sheet.appendRow([
+      data.date        || new Date().toLocaleString("fr-FR"),
+      data.prenom      || "",
+      data.nom         || "",
+      data.classe      || "",
+      data.note + " / " + data.total,
+      data.pourcentage + " %",
+      data.details     || ""
+    ]);
+
+    output.setContent(JSON.stringify({ status: "success", message: "Note enregistrée." }));
+  } catch (err) {
+    output.setContent(JSON.stringify({ status: "error", message: err.toString() }));
+  }
+
+  return output;
+}
+
+// doGet permet de tester que le script est actif depuis le navigateur
+function doGet(e) {
+  return ContentService
+    .createTextOutput(JSON.stringify({ status: "ok", message: "Script opérationnel !" }))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+                    </pre>
+                </div>
+
+                <!-- Backup -->
+                <div class="border-t border-slate-700/50 pt-6 space-y-3">
+                    <h4 class="font-bold text-slate-200 flex items-center justify-between text-xs">
+                        <span>💾 Sauvegardes locales de secours</span>
+                        <button onclick="telechargerBackupNotes()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-[10px] px-3 py-1.5 rounded font-bold cursor-pointer">
+                            Télécharger CSV
+                        </button>
+                    </h4>
+                    <p class="text-xs text-slate-400">
+                        Chaque résultat est également sauvegardé localement dans ce navigateur. Récupérable même sans connexion à Google Sheets.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+    // ==================== CONFIGURATION ====================
+    // ⚠️  L'URL est lue depuis localStorage à chaque soumission (pas mis en cache au démarrage)
+    //     pour prendre en compte les modifications faites dans le panneau enseignant.
+    function getScriptUrl() {
+        return localStorage.getItem("script_url") || "";
+    }
+
+    const CONFIG = {
+        SHEET_ANNUAIRE_CSV: "https://docs.google.com/spreadsheets/d/12WUptiE4s0Xev6BHTKAjgqUIRhIZRv3NJ0Fe_HK7K8w/gviz/tq?tqx=out:csv&sheet=Annuaire"
+    };
+
+    // Pré-remplir le champ URL enseignant au chargement
+    window.addEventListener("DOMContentLoaded", () => {
+        const saved = localStorage.getItem("script_url");
+        if (saved) document.getElementById("teacher-script-url").value = saved;
+    });
+
+    // ==================== QUESTIONS ====================
+    const QUESTIONS = [
+        { id: 1, texte: "Qu'est-ce que le « Machine Learning » ?", options: ["Quand une machine devient consciente.", "Quand on programme une machine avec des règles très strictes.", "Quand une machine apprend à partir de nombreux exemples."], correct: 2 },
+        { id: 2, texte: "Laquelle de ces applications n'est PAS un bon exemple d'IA dans notre quotidien ?", options: ["Le correcteur orthographique de base.", "La recommandation de vidéos sur YouTube.", "Le GPS Waze qui recalcule l'itinéraire."], correct: 0 },
+        { id: 3, texte: "ChatGPT et Midjourney sont des exemples de :", options: ["IA Forte", "IA Générative", "IA qui n'existe pas encore"], correct: 1 },
+        { id: 4, texte: "Un bon prompt doit être :", options: ["Le plus court possible.", "Vague pour laisser l'IA être créative.", "Précis, contextuel et donner un objectif clair."], correct: 2 },
+        { id: 5, texte: "Qu'est-ce qu'une « hallucination » de l'IA ?", options: ["Quand l'IA crée une image effrayante.", "Quand l'IA invente une information qui semble vraie mais est fausse.", "Quand l'IA refuse de répondre à une question."], correct: 1 },
+        { id: 6, texte: "Copier-coller une réponse de ChatGPT pour un devoir est considéré comme :", options: ["Une utilisation intelligente de l'IA.", "Du plagiat.", "Une bonne méthode pour gagner du temps."], correct: 1 },
+        { id: 7, texte: "Un « biais » dans une IA, c'est quand :", options: ["L'IA se trompe dans un calcul.", "L'IA reproduit des stéréotypes présents dans ses données d'entraînement.", "L'IA met trop de temps à répondre."], correct: 1 },
+        { id: 8, texte: "Quelle est la meilleure attitude face à une réponse d'une IA ?", options: ["La croire sur parole.", "La vérifier en croisant avec d'autres sources fiables.", "La rejeter systématiquement."], correct: 1 },
+        { id: 9, texte: "L'IA « Forte » (comme dans les films) est aujourd'hui :", options: ["Très courante et accessible à tous.", "En cours de développement et sera disponible l'an prochain.", "Un concept de science-fiction qui n'existe pas encore."], correct: 2 },
+        { id: 10, texte: "Le rôle de l'IA à l'école est d'être :", options: ["Un remplaçant pour faire les devoirs difficiles.", "Un assistant pour aider à comprendre et gagner du temps.", "Un outil de divertissement uniquement."], correct: 1 }
+    ];
+
+    let ELEVES = [];
+    let eleveConnecte = null;
+
+    // ==================== ANNUAIRE ====================
+    async function chargerEleves() {
+        try {
+            const resp = await fetch(CONFIG.SHEET_ANNUAIRE_CSV);
+            if (!resp.ok) throw new Error("HTTP " + resp.status);
+            const text = await resp.text();
+            const lines = text.split(/\r?\n/);
+            ELEVES = [];
+            for (let i = 1; i < lines.length; i++) {
+                const line = lines[i].trim();
+                if (!line) continue;
+                const cols = [];
+                let current = "", inQuotes = false;
+                for (let j = 0; j < line.length; j++) {
+                    const char = line[j];
+                    if (char === '"') { inQuotes = !inQuotes; }
+                    else if (char === ',' && !inQuotes) { cols.push(current.trim()); current = ""; }
+                    else { current += char; }
+                }
+                cols.push(current.trim());
+                if (cols.length >= 4) {
+                    const nom = cols[0].replace(/"/g, "").trim();
+                    const prenom = cols[1].replace(/"/g, "").trim();
+                    const classe = cols[2].replace(/"/g, "").trim();
+                    const code_secret = cols[3].replace(/"/g, "").trim();
+                    if (nom && prenom && classe && code_secret && nom.toLowerCase() !== "nom") {
+                        ELEVES.push({ nom, prenom, classe, code_secret });
+                    }
+                }
+            }
+            if (ELEVES.length === 0) throw new Error("Aucun élève dans l'annuaire");
+            remplirSelect("select-prenom", [...new Set(ELEVES.map(e => e.prenom))].sort());
+            remplirSelect("select-nom",    [...new Set(ELEVES.map(e => e.nom))].sort());
+            remplirSelect("select-classe", [...new Set(ELEVES.map(e => e.classe))].sort());
+        } catch(e) {
+            console.warn("Annuaire inaccessible, passage en mode saisie libre :", e);
+            activerSaisieManuelle();
+        }
+    }
+
+    function remplirSelect(id, valeurs) {
+        const sel = document.getElementById(id);
+        sel.innerHTML = `<option value="">— Sélectionner —</option>`;
+        valeurs.forEach(v => {
+            const opt = document.createElement("option");
+            opt.value = v; opt.textContent = v;
+            sel.appendChild(opt);
+        });
+    }
+
+    function activerSaisieManuelle() {
+        ["prenom-container","nom-container","classe-container"].forEach((id, i) => {
+            const placeholders = ["Ex: Didier", "Ex: BOIVIN", "Ex: 307"];
+            const inputIds = ["select-prenom", "select-nom", "select-classe"];
+            document.getElementById(id).innerHTML = `<input type="text" id="${inputIds[i]}" placeholder="${placeholders[i]}" class="w-full bg-white border-2 border-slate-200 rounded-xl px-4 py-3 text-slate-700 font-semibold focus:border-blue-500 focus:outline-none transition-all">`;
+        });
+        const err = document.getElementById("login-error");
+        err.innerHTML = `⚠️ <strong>Mode secours :</strong> Annuaire inaccessible. Saisissez vos informations. Le code secret est ignoré en mode secours.`;
+        err.classList.remove("hidden");
+    }
+
+    // ==================== CONNEXION ====================
+    function verifierConnexion() {
+        const prenomVal = document.getElementById("select-prenom").value.trim();
+        const nomVal    = document.getElementById("select-nom").value.trim();
+        const classeVal = document.getElementById("select-classe").value.trim();
+        const codeVal   = document.getElementById("input-code").value.trim().toUpperCase();
+        const errorDiv  = document.getElementById("login-error");
+
+        if (!prenomVal || !nomVal || !classeVal || !codeVal) {
+            errorDiv.innerHTML = "❌ Tous les champs sont obligatoires.";
+            errorDiv.classList.remove("hidden");
+            return;
+        }
+
+        if (ELEVES.length === 0) {
+            // Mode secours : on accepte sans vérification
+            errorDiv.classList.add("hidden");
+            eleveConnecte = { prenom: prenomVal, nom: nomVal.toUpperCase(), classe: classeVal };
+            lancerQCM();
+            return;
+        }
+
+        const eleve = ELEVES.find(e =>
+            e.prenom.toLowerCase() === prenomVal.toLowerCase() &&
+            e.nom.toLowerCase()    === nomVal.toLowerCase() &&
+            e.classe.toLowerCase() === classeVal.toLowerCase() &&
+            e.code_secret.toUpperCase() === codeVal
+        );
+
+        if (!eleve) {
+            errorDiv.innerHTML = "❌ Identifiant ou code secret incorrect. Vérifie ta fiche élève.";
+            errorDiv.classList.remove("hidden");
+            return;
+        }
+
+        errorDiv.classList.add("hidden");
+        eleveConnecte = { prenom: eleve.prenom, nom: eleve.nom.toUpperCase(), classe: eleve.classe };
+        lancerQCM();
+    }
+
+    // ==================== QCM ====================
+    function lancerQCM() {
+        document.getElementById("qcm-login").classList.add("hidden");
+        document.getElementById("qcm-main").classList.remove("hidden");
+        document.getElementById("display-eleve").textContent = `👤 ${eleveConnecte.prenom} ${eleveConnecte.nom}`;
+        document.getElementById("display-classe").textContent = `🏫 Classe : ${eleveConnecte.classe}`;
+        const container = document.getElementById("questions-container");
+        container.innerHTML = "";
+        const letters = ["A", "B", "C"];
+        QUESTIONS.forEach(q => {
+            const bloc = document.createElement("div");
+            bloc.className = "bg-slate-50 border border-slate-200 rounded-2xl p-6 shadow-sm space-y-4";
+            bloc.innerHTML = `
+                <div class="flex items-center justify-between border-b border-slate-200/60 pb-3">
+                    <span class="text-xs font-extrabold text-blue-600 uppercase tracking-widest">Question ${q.id} sur 10</span>
+                </div>
+                <h4 class="font-extrabold text-base text-slate-900 leading-snug">${q.texte}</h4>
+                <div class="grid grid-cols-1 gap-3 pt-1">
+                    ${q.options.map((opt, i) => `
+                        <label class="flex items-center gap-3 bg-white hover:bg-slate-100/80 border border-slate-200 rounded-xl p-4 cursor-pointer transition-all select-none shadow-sm">
+                            <input type="radio" name="q${q.id}" value="${i}" onchange="mettreAJourProgression()" class="w-4 h-4 text-blue-600 cursor-pointer">
+                            <span class="text-sm font-semibold text-slate-700"><strong class="text-slate-400 mr-1">${letters[i]})</strong> ${opt}</span>
+                        </label>
+                    `).join("")}
+                </div>
+            `;
+            container.appendChild(bloc);
+        });
+        mettreAJourProgression();
+    }
+
+    function mettreAJourProgression() {
+        const repondues = QUESTIONS.filter(q => document.querySelector(`input[name="q${q.id}"]:checked`)).length;
+        document.getElementById("progress-label").textContent = `${repondues} / 10 questions répondues`;
+        document.getElementById("progress-bar").style.width = `${repondues * 10}%`;
+        const btn = document.getElementById("btn-submit");
+        const warn = document.getElementById("submit-warning");
+        if (repondues === 10) {
+            btn.disabled = false;
+            warn.innerHTML = `🎉 Tu as répondu à tout ! Tu peux maintenant envoyer tes réponses.`;
+            warn.className = "text-sm text-emerald-600 font-bold text-center";
+        } else {
+            btn.disabled = true;
+            warn.textContent = `Réponds à toutes les questions. (${10 - repondues} restante${10 - repondues > 1 ? "s" : ""})`;
+            warn.className = "text-sm text-slate-500 font-medium text-center";
+        }
+    }
+
+    // ==================== SOUMISSION — VERSION CORRIGÉE ====================
+    async function soumettreQCM() {
+        // Désactiver le bouton immédiatement pour éviter le double-clic
+        const btn = document.getElementById("btn-submit");
+        btn.disabled = true;
+        btn.innerHTML = `<span class="animate-pulse">⏳ Envoi en cours...</span>`;
+
+        let score = 0;
+        const reponses = QUESTIONS.map(q => {
+            const sel = document.querySelector(`input[name="q${q.id}"]:checked`);
+            const repIndex = sel ? parseInt(sel.value) : -1;
+            const correct = repIndex === q.correct;
+            if (correct) score++;
+            return { question: q.id, user_choice: repIndex, correct };
+        });
+
+        const pourcentage = Math.round((score / 10) * 100);
+        const payload = {
+            prenom:      eleveConnecte.prenom,
+            nom:         eleveConnecte.nom,
+            classe:      eleveConnecte.classe,
+            date:        new Date().toLocaleString("fr-FR"),
+            note:        score,
+            total:       10,
+            pourcentage: pourcentage,
+            details:     reponses.map(r => r.correct ? "✓" : "✗").join("")
+        };
+
+        // 1. Sauvegarde locale immédiate (filet de sécurité)
+        sauvegarderNoteLocalement(payload);
+
+        // 2. Envoi vers Google Apps Script
+        // On utilise fetch avec mode "no-cors" et Content-Type "text/plain"
+        // pour éviter le preflight OPTIONS que Google Apps Script ne gère pas.
+        // La réponse ne sera pas lisible (opaque), mais l'envoi arrive bien côté serveur.
+        let envoiReussi = false;
+        const scriptUrl = getScriptUrl();
+
+        if (!scriptUrl) {
+            console.warn("Aucune URL Apps Script configurée. Seule la sauvegarde locale est effectuée.");
+        } else {
+            try {
+                await fetch(scriptUrl, {
+                    method:  "POST",
+                    // ✅ "no-cors" évite l'erreur CORS mais rend la réponse opaque (non lisible).
+                    //    C'est le seul mode compatible avec Google Apps Script sans proxy.
+                    mode:    "no-cors",
+                    // ✅ "text/plain" évite le preflight CORS (requête OPTIONS) que Apps Script
+                    //    ne supporte pas, ce qui causerait un blocage silencieux.
+                    headers: { "Content-Type": "text/plain;charset=UTF-8" },
+                    body:    JSON.stringify(payload)
+                });
+                // Avec no-cors, on ne peut pas lire la réponse,
+                // mais si fetch ne lève pas d'exception, la requête est partie.
+                envoiReussi = true;
+                console.log("✅ Données envoyées à Google Apps Script (réponse opaque, vérifiez le Sheet).");
+            } catch (err) {
+                console.warn("❌ Erreur réseau lors de l'envoi :", err);
+                envoiReussi = false;
+            }
+        }
+
+        afficherResultats(score, pourcentage, reponses, envoiReussi, !!scriptUrl);
+    }
+
+    function sauvegarderNoteLocalement(note) {
+        const backup = JSON.parse(localStorage.getItem("all_grades") || "[]");
+        backup.push(note);
+        localStorage.setItem("all_grades", JSON.stringify(backup));
+    }
+
+    // ==================== RÉSULTATS ====================
+    function afficherResultats(score, pourcentage, reponses, envoiReussi, urlConfiguree) {
+        document.getElementById("qcm-main").classList.add("hidden");
+        const resultsContainer = document.getElementById("qcm-results");
+        resultsContainer.classList.remove("hidden");
+
+        let mention = "À retravailler", emoji = "📚";
+        let colorTheme = "from-red-50 to-red-100 text-red-800 border-red-200", scoreColor = "text-red-600";
+        if (pourcentage >= 80) { mention = "Excellent travail !"; emoji = "🏆"; colorTheme = "from-emerald-50 to-emerald-100 text-emerald-800 border-emerald-200"; scoreColor = "text-emerald-600"; }
+        else if (pourcentage >= 60) { mention = "Très bien !"; emoji = "🌟"; colorTheme = "from-blue-50 to-blue-100 text-blue-800 border-blue-200"; scoreColor = "text-blue-600"; }
+        else if (pourcentage >= 40) { mention = "Peut mieux faire"; emoji = "💪"; colorTheme = "from-orange-50 to-orange-100 text-orange-800 border-orange-200"; scoreColor = "text-orange-600"; }
+
+        // Message d'état de l'envoi selon les cas
+        let statutBadge = "";
+        if (!urlConfiguree) {
+            statutBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-100 text-amber-800 border border-amber-200">⚙️ Apps Script non configuré — Note sauvegardée localement</span>`;
+        } else if (envoiReussi) {
+            statutBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-200">✅ Note envoyée vers Google Sheets — Vérifiez le tableau</span>`;
+        } else {
+            statutBadge = `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-red-100 text-red-800 border border-red-200">❌ Erreur réseau — Note sauvegardée localement (récupérable)</span>`;
+        }
+
+        resultsContainer.innerHTML = `
+            <div class="bg-gradient-to-br ${colorTheme} border p-8 rounded-3xl text-center space-y-4 shadow-sm">
+                <div class="text-6xl">${emoji}</div>
+                <h3 class="text-4xl font-black ${scoreColor}">${score} / 10</h3>
+                <h4 class="text-xl font-bold">${mention}</h4>
+                <p class="text-sm font-medium opacity-90 max-w-md mx-auto">
+                    <strong>${eleveConnecte.prenom} ${eleveConnecte.nom}</strong> — Classe <strong>${eleveConnecte.classe}</strong>
+                </p>
+                <div class="pt-2">${statutBadge}</div>
+            </div>
+            <div class="space-y-4">
+                <h4 class="font-bold text-lg text-slate-800">📝 Revue de tes réponses :</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                    ${reponses.map(rep => `
+                        <div class="border rounded-xl p-4 text-center flex flex-col justify-between h-24 ${rep.correct ? 'bg-emerald-50 border-emerald-200 text-emerald-800' : 'bg-red-50 border-red-200 text-red-800'}">
+                            <span class="text-xs font-bold uppercase tracking-wider">Q${rep.question}</span>
+                            <span class="text-2xl">${rep.correct ? '✓' : '✗'}</span>
+                            <span class="text-[10px] font-semibold">${rep.correct ? 'Correct' : 'Incorrect'}</span>
+                        </div>
+                    `).join("")}
+                </div>
+            </div>
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-6 text-center text-sm text-slate-500 font-medium">
+                Tu as terminé l'épreuve ! Tu peux fermer cet onglet ou lever la main pour que l'enseignant valide ta note.
+            </div>
+        `;
+    }
+
+    // ==================== PANNEAU ENSEIGNANT ====================
+    function toggleTeacherPanel() {
+        const panel = document.getElementById("teacher-panel");
+        panel.classList.toggle("hidden");
+        if (!panel.classList.contains("hidden")) {
+            setTimeout(() => panel.scrollIntoView({ behavior: "smooth" }), 100);
+        }
+    }
+
+    function saveScriptUrl(url) {
+        const trimmed = url.trim();
+        if (!trimmed || !trimmed.startsWith("https://script.google.com")) {
+            alert("⚠️ L'URL saisie ne semble pas valide. Elle doit commencer par https://script.google.com/...");
+            return;
+        }
+        localStorage.setItem("script_url", trimmed);
+        document.getElementById("teacher-script-url").value = trimmed;
+        alert("✅ URL enregistrée ! Les prochaines soumissions utiliseront cette adresse.");
+    }
+
+    async function testerLiaisonScript() {
+        const resultDiv = document.getElementById("test-script-result");
+        resultDiv.classList.remove("hidden");
+        resultDiv.className = "text-xs p-2.5 rounded-lg font-semibold mt-2 bg-slate-900 text-slate-300";
+        resultDiv.innerHTML = "⏳ Envoi du test en cours...";
+
+        const scriptUrl = getScriptUrl();
+        if (!scriptUrl) {
+            resultDiv.className = "text-xs p-2.5 rounded-lg font-semibold mt-2 bg-red-950/20 text-red-300";
+            resultDiv.innerHTML = "❌ Aucune URL Apps Script enregistrée. Renseignez et enregistrez l'URL d'abord.";
+            return;
+        }
+
+        const testPayload = {
+            prenom: "TEST-Prénom", nom: "TEST-NOM", classe: "CLASSE-TEST",
+            date: new Date().toLocaleString("fr-FR"),
+            note: 10, total: 10, pourcentage: 100, details: "✓✓✓✓✓✓✓✓✓✓"
+        };
+
+        try {
+            await fetch(scriptUrl, {
+                method: "POST", mode: "no-cors",
+                headers: { "Content-Type": "text/plain;charset=UTF-8" },
+                body: JSON.stringify(testPayload)
+            });
+            resultDiv.className = "text-xs p-2.5 rounded-lg font-semibold mt-2 bg-emerald-950/30 text-emerald-300";
+            resultDiv.innerHTML = `
+                ✅ Requête envoyée (sans erreur réseau).<br><br>
+                <strong>Vérifiez maintenant votre Google Sheet :</strong> une ligne <em>"TEST-Prénom TEST-NOM CLASSE-TEST"</em> doit apparaître.<br><br>
+                Si elle n'est pas là :<br>
+                • Vérifiez que le déploiement est bien en accès <strong>"Tout le monde"</strong><br>
+                • Re-déployez en créant un <strong>nouveau déploiement</strong> (pas "mettre à jour")<br>
+                • Vérifiez que vous avez bien autorisé l'accès lors du premier déploiement
+            `;
+        } catch (err) {
+            resultDiv.className = "text-xs p-2.5 rounded-lg font-semibold mt-2 bg-red-950/20 text-red-300";
+            resultDiv.innerHTML = "❌ Erreur réseau : " + err.toString();
+        }
+    }
+
+    function copierCodeAppsScript() {
+        const code = document.getElementById("code-apps-script").textContent;
+        navigator.clipboard.writeText(code)
+            .then(() => alert("📋 Code copié !"))
+            .catch(() => alert("Sélectionnez le texte manuellement."));
+    }
+
+    function telechargerBackupNotes() {
+        const backup = JSON.parse(localStorage.getItem("all_grades") || "[]");
+        if (backup.length === 0) { alert("Aucune note sauvegardée sur ce poste."); return; }
+        let csv = "Date,Prenom,Nom,Classe,Note,Total,Pourcentage,Details\n";
+        backup.forEach(n => {
+            csv += `"${n.date}","${n.prenom}","${n.nom}","${n.classe}",${n.note},${n.total},${n.pourcentage},"${n.details}"\n`;
+        });
+        const a = document.createElement("a");
+        a.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+        a.download = `QCM_IA_Biais_${new Date().toISOString().slice(0,10)}.csv`;
+        a.click();
+    }
+
+    // ==================== INIT ====================
+    chargerEleves();
+    </script>
+</body>
+</html>
