@@ -397,17 +397,37 @@ function remplirSelect(id, valeurs) {
 
 // ==================== VÉRIFICATION CONNEXION ====================
 function verifierConnexion() {
-    const prenom = document.getElementById("select-prenom").value;
-    const nom = document.getElementById("select-nom").value;
-    const classe = document.getElementById("select-classe").value;
-    const code = document.getElementById("input-code").value.trim();
+    const prenom = document.getElementById("select-prenom").value.trim();
+    const nom    = document.getElementById("select-nom").value.trim();
+    const classe = document.getElementById("select-classe").value.trim();
+    const code   = document.getElementById("input-code").value.trim().toUpperCase();
 
     const errorDiv = document.getElementById("login-error");
 
     if (!prenom || !nom || !classe || !code) {
         errorDiv.style.display = "block";
+        errorDiv.textContent = "Tous les champs sont obligatoires.";
         return;
     }
+
+    // Recherche avec nettoyage
+    const eleve = ELEVES.find(e => 
+        e.prenom.trim().toLowerCase() === prenom.toLowerCase() &&
+        e.nom.trim().toLowerCase()    === nom.toLowerCase() &&
+        e.classe.trim().toLowerCase() === classe.toLowerCase() &&
+        e.code_secret.trim().toUpperCase() === code
+    );
+
+    if (!eleve) {
+        errorDiv.style.display = "block";
+        errorDiv.textContent = "Identifiant ou code secret incorrect.";
+        return;
+    }
+
+    errorDiv.style.display = "none";
+    eleveConnecte = { prenom: eleve.prenom, nom: eleve.nom, classe: eleve.classe };
+    lancerQCM();
+}
 
     const eleve = ELEVES.find(e => 
         e.prenom.toLowerCase() === prenom.toLowerCase() &&
