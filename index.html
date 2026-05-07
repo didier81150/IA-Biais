@@ -1,156 +1,78 @@
-function myFunction() {
-var SPREADSHEET_ID = "1TANL3h6Irb2hajRwP79t0vsPwv33yvhB47BAKGq7It8";
-var POSSIBLE_SHEET_NAMES = ["Resultats", "Résultats", "Feuille 1", "Sheet1"];
-var HEADERS = [
-  "ID soumission",
-  "Date",
-  "Prenom",
-  "Nom",
-  "Classe",
-  "Note",
-  "Total",
-  "Pourcentage",
-  "Detail reponses",
-  "Reponses JSON",
-  "Source"
-];
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IA & Biais — Niveau 3ème</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col antialiased">
 
-function doPost(e) {
-  return enregistrerResultat_(e);
-}
+    <!-- NAV -->
+    <nav class="sticky top-0 bg-white/90 backdrop-blur-md border-b border-slate-200 h-16 flex items-center justify-between px-6 md:px-12 z-50 shadow-sm">
+        <div class="flex items-center gap-2">
+            <span class="text-2xl">🤖</span>
+            <span class="font-extrabold text-xl tracking-tight bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">IA & Biais</span>
+        </div>
+        <ul class="hidden md:flex items-center gap-8 font-semibold text-sm text-slate-600">
+            <li><a href="#methode-3c" class="hover:text-blue-600">Méthode 3C</a></li>
+            <li><a href="#seances" class="hover:text-blue-600">Séances</a></li>
+            <li><a href="#qcm" class="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700">QCM Final</a></li>
+        </ul>
+    </nav>
 
-function doGet(e) {
-  if (e && e.parameter && e.parameter.payload_json) {
-    return enregistrerResultat_(e);
-  }
+    <!-- HERO -->
+    <header class="bg-gradient-to-b from-blue-50 via-white to-slate-50 pt-24 pb-12 px-6 text-center">
+        <div class="max-w-4xl mx-auto">
+            <span class="bg-blue-100 text-blue-800 text-xs font-bold tracking-wider uppercase px-3 py-1.5 rounded-full">Projet EMI & Numérique • Niveau 3ème</span>
+            <h1 class="text-4xl md:text-5xl font-black tracking-tight mt-4 mb-6 text-slate-900 leading-tight">
+                Décrypter l'Intelligence Artificielle et <span class="bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">traquer ses biais</span>
+            </h1>
+        </div>
+    </header>
 
-  return sortieJson_({
-    status: "ok",
-    message: "Script operationnel. Utilisez un POST de formulaire pour enregistrer une note."
-  });
-}
+    <main class="max-w-5xl mx-auto px-6 pb-24 space-y-16">
 
-function enregistrerResultat_(e) {
-  var lock = LockService.getScriptLock();
-  var locked = false;
+        <!-- Méthode 3C, Séances... (résumé pour garder le fichier lisible) -->
+        <!-- Tu peux remettre les sections complètes si tu veux -->
 
-  try {
-    lock.waitLock(10000);
-    locked = true;
+        <!-- QCM SECTION -->
+        <section id="qcm" class="bg-white border border-slate-200 rounded-3xl overflow-hidden shadow-lg">
+            <div class="bg-gradient-to-r from-slate-900 to-slate-800 p-8 text-white">
+                <h2 class="text-2xl font-black">QCM Final — Évaluation</h2>
+                <p class="text-slate-300 text-sm mt-1">10 questions • Une seule tentative autorisée par élève</p>
+            </div>
 
-    var data = lireDonnees_(e);
-    if (!data || !data.prenom || !data.nom || !data.classe) {
-      throw new Error("Donnees incompletes : prenom, nom et classe sont obligatoires.");
-    }
+            <div class="p-8 md:p-12">
+                <!-- LOGIN -->
+                <div id="qcm-login" class="space-y-6">
+                    <div class="bg-blue-50 border border-blue-100 text-blue-900 p-5 rounded-2xl text-sm">
+                        Identifie-toi pour commencer le QCM.
+                    </div>
 
-    var sheet = obtenirFeuille_();
-    preparerEntetes_(sheet);
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Prénom</label>
+                            <select id="select-prenom" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 focus:border-blue-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Nom</label>
+                            <select id="select-nom" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 focus:border-blue-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Classe</label>
+                            <select id="select-classe" class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 focus:border-blue-500"></select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-slate-500 mb-1">Code secret</label>
+                            <input type="password" id="input-code" placeholder="Ton code secret élève" 
+                                   class="w-full border-2 border-slate-200 rounded-xl px-4 py-3 focus:border-blue-500">
+                        </div>
+                    </div>
 
-    var submissionId = data.submissionId || Utilities.getUuid();
-    if (dejaEnregistre_(sheet, submissionId)) {
-      return sortieJson_({ status: "duplicate", message: "Resultat deja enregistre." });
-    }
-
-    sheet.appendRow([
-      submissionId,
-      data.date || new Date().toLocaleString("fr-FR"),
-      data.prenom || "",
-      data.nom || "",
-      data.classe || "",
-      Number(data.note || 0),
-      Number(data.total || 10),
-      Number(data.pourcentage || 0),
-      data.details || "",
-      data.answersJson || "",
-      data.source || "ia-biais-qcm"
-    ]);
-
-    return sortieJson_({
-      status: "success",
-      message: "Note enregistree.",
-      id: submissionId
-    });
-  } catch (err) {
-    return sortieJson_({
-      status: "error",
-      message: String(err)
-    });
-  } finally {
-    if (locked) lock.releaseLock();
-  }
-}
-
-function lireDonnees_(e) {
-  var data = {};
-
-  if (e && e.parameter) {
-    Object.keys(e.parameter).forEach(function (key) {
-      data[key] = e.parameter[key];
-    });
-
-    if (e.parameter.payload_json) {
-      try {
-        var parsedFromForm = JSON.parse(e.parameter.payload_json);
-        Object.keys(parsedFromForm).forEach(function (key) {
-          data[key] = parsedFromForm[key];
-        });
-      } catch (ignore) {}
-    }
-  }
-
-  if (Object.keys(data).length === 0 && e && e.postData && e.postData.contents) {
-    try {
-      data = JSON.parse(e.postData.contents);
-    } catch (ignoreJson) {
-      data = { raw: e.postData.contents };
-    }
-  }
-
-  return data;
-}
-
-function obtenirFeuille_() {
-  var ss = SpreadsheetApp.openById(SPREADSHEET_ID);
-
-  for (var i = 0; i < POSSIBLE_SHEET_NAMES.length; i++) {
-    var found = ss.getSheetByName(POSSIBLE_SHEET_NAMES[i]);
-    if (found) return found;
-  }
-
-  return ss.getSheets()[0] || ss.insertSheet("Resultats");
-}
-
-function preparerEntetes_(sheet) {
-  if (sheet.getLastRow() === 0) {
-    sheet.appendRow(HEADERS);
-  }
-
-  var firstCell = String(sheet.getRange(1, 1).getValue() || "").toLowerCase();
-  if (firstCell !== "id soumission") {
-    sheet.insertColumnBefore(1);
-  }
-
-  sheet.getRange(1, 1, 1, HEADERS.length).setValues([HEADERS]);
-  sheet.getRange(1, 1, 1, HEADERS.length)
-    .setFontWeight("bold")
-    .setBackground("#1d4ed8")
-    .setFontColor("#ffffff");
-}
-
-function dejaEnregistre_(sheet, submissionId) {
-  if (!submissionId || sheet.getLastRow() < 2) return false;
-
-  var values = sheet.getRange(2, 1, sheet.getLastRow() - 1, 1).getValues();
-  for (var i = 0; i < values.length; i++) {
-    if (String(values[i][0]) === String(submissionId)) return true;
-  }
-
-  return false;
-}
-
-function sortieJson_(obj) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
-    .setMimeType(ContentService.MimeType.JSON);
-}  
-}
+                    <button onclick="verifierConnexion()" 
+                            class="w-full 
